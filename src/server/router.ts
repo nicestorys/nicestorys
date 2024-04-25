@@ -11,7 +11,7 @@ export function routes() {
 
   router.get("/api/v1", (ctx) => {
     return ctx.json({
-      fff: "fff",
+      msg: 'hello world',
     });
   });
 
