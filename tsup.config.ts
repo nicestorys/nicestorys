@@ -6,16 +6,15 @@ import { vercel } from "./scripts/vercel";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const options: Options[] = [
-  //   {
-  //     entry: {
-  //       main: "src/main.prod.ts",
-  //     },
-  //     format: ["esm"],
-  //     bundle: true,
-  //   },
+  {
+    entry: {
+      main: "src/main.prod.ts",
+    },
+    format: ["esm"],
+    bundle: true,
+  },
 ];
 
-console.log(process.env);
 if (process.env.VERCEL) {
   const vercelOutputPath = path.join(__dirname, ".vercel", "output");
   const funcPath = path.join(vercelOutputPath, "functions");
@@ -33,8 +32,6 @@ if (process.env.VERCEL) {
       await vercel({ outputDir: vercelOutputPath, funcs: ["api.func"] });
     },
   });
-
-  //   fs.cpSync(path.join(__dirname, ".deploy", "vercel.ts"), path.join(__dirname, "api/index.ts"), { recursive: true });
 } else if (process.env.NETLIFY) {
   options.push({
     entry: {
