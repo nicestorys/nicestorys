@@ -1,0 +1,17 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["cypress/e2e/**/*.cy.ts"],
+      "extends": ["plugin:cypress/recommended"]
+    }
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+  }
+}

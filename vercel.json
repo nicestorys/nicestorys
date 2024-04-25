@@ -1,0 +1,8 @@
+{
+  "buildCommand": "npm run build:vercel",
+  "outputDirectory": "dist/static",
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api" },
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
