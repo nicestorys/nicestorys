@@ -21,7 +21,7 @@ if (process.env.VERCEL) {
   const funcPath = path.join(vercelOutputPath, "functions");
   options.push({
     entry: {
-      "api.func/api": ".deploy/vercel.ts",
+      "api.func/index": ".deploy/vercel.ts",
     },
     bundle: true,
     format: ["esm"],
@@ -30,7 +30,7 @@ if (process.env.VERCEL) {
     splitting: true,
     async onSuccess() {
       fs.copySync(path.join(__dirname, "dist"), path.join(vercelOutputPath));
-      await vercel({ outputDir: vercelOutputPath });
+      await vercel({ outputDir: vercelOutputPath, funcs: ["api.func"] });
     },
   });
 
