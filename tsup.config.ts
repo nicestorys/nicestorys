@@ -3,6 +3,7 @@ import fs from "fs-extra";
 import path from "path";
 import { fileURLToPath } from "url";
 import { vercel } from "./scripts/vercel";
+import pkg from './package.json'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const options: Options[] = [
@@ -25,8 +26,10 @@ if (process.env.VERCEL) {
     bundle: true,
     format: ["esm"],
     outDir: funcPath,
-    noExternal: ["hono", "zod"],
     splitting: true,
+    noExternal: [
+      ...Object.keys(pkg.dependencies),
+    ],
     async onSuccess() {
       fs.copySync(path.join(__dirname, "dist"), path.join(vercelOutputPath));
       await vercel({ outputDir: vercelOutputPath, funcs: ["api.func"] });

@@ -1,10 +1,14 @@
-import animate from "tailwindcss-animate";
-import type { Config } from "tailwindcss";
-import defaultTheme from "tailwindcss/defaultTheme";
+import type { Config } from "tailwindcss"
 
-export default {
-  darkMode: "class",
-  content: ["./index.html", "./src/client/**/*.{tsx,js,ts}"],
+const config = {
+  darkMode: ["class"],
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+	],
+  prefix: "",
   theme: {
     container: {
       center: true,
@@ -14,10 +18,6 @@ export default {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ["'Inter Variable'", ...defaultTheme.fontFamily.sans],
-        mono: ["'JetBrains Mono Variable'", ...defaultTheme.fontFamily.mono],
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -67,22 +67,14 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "collapsible-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-collapsible-content-height)" },
-        },
-        "collapsible-up": {
-          from: { height: "var(--radix-collapsible-content-height)" },
-          to: { height: "0" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "collapsible-down": "collapsible-down 0.2s ease-in-out",
-        "collapsible-up": "collapsible-up 0.2s ease-in-out",
       },
     },
   },
-  plugins: [animate],
-} satisfies Config;
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config
+
+export default config
