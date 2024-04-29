@@ -1,7 +1,9 @@
 import type { Config } from 'vike/types'
+import config from '@vite-plugin-vercel/vike/config';
 
 // https://vike.dev/config
 export default {
+  extends: config,
   // https://vike.dev/clientRouting
   clientRouting: true,
   // https://vike.dev/meta
