@@ -1,22 +1,9 @@
-import { defineConfig } from "vite";
-import react from '@vitejs/plugin-react-swc'
-import path from "path";
+import react from '@vitejs/plugin-react'
+import vike from 'vike/plugin'
+import { UserConfig } from 'vite'
 
-export default defineConfig({
-  plugins: [
-    react(),
-  ],
-  build: {
-    outDir: "dist/static",
-  },
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-  server: {
-    proxy: {
-      "/api": "http://127.0.0.1:3000",
-    },
-  },
-});
+const config: UserConfig = {
+  plugins: [react(), vike()]
+}
+
+export default config
